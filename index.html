@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Covenant Church | A Modern Faith Community</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf7;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* === Buttons & UI === */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary {
+            background: #b8863b; /* warm gold */
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #9e6f2e;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(184,134,59,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #b8863b;
+            color: #b8863b;
+        }
+        .btn-outline:hover {
+            background: #b8863b;
+            color: white;
+        }
+
+        .btn-light {
+            background: white;
+            color: #2c3e50;
+        }
+        .btn-light:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+            color: #1e2b37;
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #b8863b;
+            margin-top: 16px;
+            border-radius: 4px;
+        }
+        .text-center .section-title:after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .dark-bg {
+            background: #1e2b37;
+            color: #e6e9ee;
+        }
+        .dark-bg .section-title {
+            color: white;
+        }
+        .dark-bg .section-title:after {
+            background: #e6b87e;
+        }
+
+        /* === Navigation === */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo i {
+            font-size: 2rem;
+            color: #b8863b;
+        }
+        .logo span {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #1e2b37;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2c3e50;
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #b8863b;
+        }
+        .nav-donate {
+            background: #b8863b;
+            color: white !important;
+            padding: 10px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            box-shadow: 0 6px 12px rgba(184,134,59,0.2);
+        }
+        .nav-donate:hover {
+            background: #9e6f2e;
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: #1e2b37;
+            cursor: pointer;
+        }
+
+        /* === Hero === */
+        .hero {
+            margin-top: 86px;
+            background: linear-gradient(135deg, #1e2b37 0%, #1a242f 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-icon {
+            position: absolute;
+            right: 5%;
+            top: 20%;
+            font-size: 20vw;
+            opacity: 0.04;
+            color: #b8863b;
+            transform: rotate(10deg);
+            pointer-events: none;
+        }
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        .hero .highlight {
+            color: #e6b87e;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* === Cards / Grid === */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 50px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.02);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .dark-bg .card {
+            background: #293845;
+            border: 1px solid #3a4a5a;
+            color: #f0f3f7;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 40px rgba(0,0,0,0.08);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: #b8863b;
+            margin-bottom: 20px;
+        }
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        .card p {
+            color: #5a6a7a;
+            margin-bottom: 24px;
+        }
+        .dark-bg .card p {
+            color: #cbd2da;
+        }
+
+        /* === GIVING SECTION (featured) === */
+        .giving-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .giving-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .method-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.02);
+            border: 1px solid #f0f0f0;
+        }
+        .method-icon {
+            background: #faf3e8;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #b8863b;
+        }
+        .method-text h4 {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+        .method-text p {
+            color: #5b6f82;
+        }
+        .qr-scan {
+            background: white;
+            border-radius: 40px;
+            padding: 30px;
+            text-align: center;
+            border: 2px dashed #b8863b;
+        }
+        .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: #f2ede5;
+            margin: 0 auto 20px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #b8863b;
+        }
+        .btn-giving {
+            background: #b8863b;
+            color: white;
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2rem;
+            border-radius: 60px;
+            text-align: center;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* === events === */
+        .event-list {
+            margin-top: 40px;
+        }
+        .event-item {
+            display: flex;
+            gap: 20px;
+            background: white;
+            border-radius: 24px;
+            padding: 20px 30px;
+            margin-bottom: 16px;
+            align-items: center;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+        }
+        .event-date {
+            background: #b8863b;
+            color: white;
+            border-radius: 20px;
+            padding: 12px 16px;
+            text-align: center;
+            min-width: 90px;
+            font-weight: 700;
+        }
+        .event-date .day { font-size: 2rem; line-height: 1; }
+        .event-date .month { font-size: 1rem; text-transform: uppercase; }
+
+        /* === watch / sermons === */
+        .watch-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        .featured-sermon {
+            background: #1e2b37;
+            border-radius: 40px;
+            padding: 36px;
+            color: white;
+        }
+        .sermon-thumb {
+            background: #2f3e4e;
+            height: 200px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 24px 0;
+            font-size: 3rem;
+            color: #b8863b;
+        }
+        .sermon-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .sermon-card {
+            background: white;
+            padding: 18px;
+            border-radius: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .sermon-card i {
+            font-size: 2.5rem;
+            color: #b8863b;
+        }
+
+        /* === footer === */
+        .footer {
+            background: #131e26;
+            color: #b0c0ce;
+            padding: 60px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .footer a {
+            color: #d4dce4;
+            text-decoration: none;
+        }
+        .footer a:hover { color: #e6b87e; }
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #2a3945;
+        }
+
+        /* === mobile === */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                gap: 20px;
+                box-shadow: 0 30px 40px rgba(0,0,0,0.1);
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 3rem; }
+            .giving-grid { grid-template-columns: 1fr; }
+            .watch-grid { grid-template-columns: 1fr; }
+            .event-item { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo">
+            <i class="fas fa-church"></i>
+            <span>NEW COVENANT</span>
+        </div>
+        <button class="mobile-menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#watch">Watch</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#connect">Connect</a></li>
+            <li><a href="#giving" class="nav-donate"><i class="fas fa-heart" style="margin-right: 8px;"></i>Give</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- Hero -->
+<section id="home" class="hero">
+    <div class="hero-bg-icon"><i class="fas fa-cross"></i></div>
+    <div class="container hero-content">
+        <h1>find <span class="highlight">hope</span><br>build community</h1>
+        <p>New Covenant is a place where faith meets everyday life. Join us in person or online — everyone is welcome.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Plan your visit</a>
+            <a href="#" class="btn btn-outline">Watch live</a>
+        </div>
+    </div>
+</section>
+
+<!-- Ministries / About -->
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title">a church for all</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-hands-praying"></i>
+                <h3>Worship</h3>
+                <p>Sunday gatherings at 9am & 11am. Contemporary worship with biblical teaching.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-people-group"></i>
+                <h3>Community</h3>
+                <p>Small groups meet throughout the week to grow, share, and support each other.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Serve</h3>
+                <p>Make a difference through local outreach and global missions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GIVING SECTION (modern church essential) -->
+<section id="giving" class="section dark-bg">
+    <div class="container">
+        <h2 class="section-title">generous hearts</h2>
+        <p style="font-size: 1.2rem; max-width: 700px;">Your giving fuels our mission and helps us serve the community. Every gift makes an eternal impact.</p>
+
+        <div class="giving-grid" style="margin-top: 50px;">
+            <!-- left side: methods -->
+            <div class="giving-methods">
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-credit-card"></i></div>
+                    <div class="method-text">
+                        <h4>Give online</h4>
+                        <p>Use credit card, debit, or bank transfer — quick & secure.</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="method-text">
+                        <h4>Text to give</h4>
+                        <p>Text "COVENANT" to 77977 and follow the link.</p>
+                    </div>
+                </div>
+                <div class="method-item">
+                    <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="method-text">
+                        <h4>Mail a check</h4>
+                        <p>New Covenant Church, 2100 Faith Ave, City, ST 12345</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right side: qr / donate button -->
+            <div class="qr-scan">
+                <div class="qr-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <p style="margin-bottom: 12px;">Scan with phone camera</p>
+                <a href="#" class="btn-giving"><i class="fas fa-lock" style="margin-right: 8px;"></i>Give now</a>
+                <p style="font-size: 0.9rem; margin-top: 16px; opacity: 0.8;">One-time or recurring</p>
+            </div>
+        </div>
+
+        <!-- giving verse / note -->
+        <div style="text-align: center; margin-top: 60px; font-style: italic; border-top: 1px solid #3a4a5a; padding-top: 40px;">
+            <p style="font-size: 1.4rem;">"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+            <p style="margin-top: 16px;">— 2 Corinthians 9:7</p>
+        </div>
+    </div>
+</section>
+
+<!-- Watch / Sermons -->
+<section id="watch" class="section">
+    <div class="container">
+        <h2 class="section-title">watch & listen</h2>
+        <div class="watch-grid">
+            <div class="featured-sermon">
+                <span style="background: #b8863b; padding: 6px 16px; border-radius: 40px; font-size: 0.9rem;">latest message</span>
+                <h3 style="font-size: 2rem; margin: 24px 0 16px;">The Path of Peace</h3>
+                <p>Pastor Michael explores how we can find inner peace in chaotic times.</p>
+                <div class="sermon-thumb">
+                    <i class="fas fa-play-circle" style="font-size: 5rem;"></i>
+                </div>
+                <a href="#" class="btn btn-light" style="margin-top: 10px;">Watch now</a>
+            </div>
+            <div class="sermon-list">
+                <div class="sermon-card">
+                    <i class="fas fa-video"></i>
+                    <div><strong>Living with purpose</strong><br> <span style="color:#777;">Feb 22, 2026</span></div>
+                </div>
+                <div class="sermon-card">
+                    <i class="fas fa-video"></i>
+                    <div><strong>Faith in the family</strong><br> <span style="color:#777;">Feb 15, 2026</span></div>
+                </div>
+                <div class="sermon-card">
+                    <i class="fas fa-video"></i>
+                    <div><strong>Hope for tomorrow</strong><br> <span style="color:#777;">Feb 8, 2026</span></div>
+                </div>
+                <div class="sermon-card">
+                    <i class="fas fa-headphones"></i>
+                    <div><strong>Podcast: real faith</strong><br> <span style="color:#777;">New episode weekly</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Events -->
+<section id="events" class="section dark-bg">
+    <div class="container">
+        <h2 class="section-title">upcoming events</h2>
+        <div class="event-list">
+            <div class="event-item">
+                <div class="event-date"><span class="day">28</span><br><span class="month">MAR</span></div>
+                <div style="flex:1;"><h3>Men's breakfast</h3><p>Fellowship & pancake breakfast at the church hall, 8:30am.</p></div>
+                <a href="#" class="btn btn-outline" style="border-color:white; color:white;">Join</a>
+            </div>
+            <div class="event-item">
+                <div class="event-date"><span class="day">4</span><br><span class="month">APR</span></div>
+                <div style="flex:1;"><h3>Good Friday service</h3><p>7:00pm reflective service with communion.</p></div>
+                <a href="#" class="btn btn-outline" style="border-color:white; color:white;">Details</a>
+            </div>
+            <div class="event-item">
+                <div class="event-date"><span class="day">6</span><br><span class="month">APR</span></div>
+                <div style="flex:1;"><h3>Easter at the park</h3><p>Sunrise service & community celebration in Central Park.</p></div>
+                <a href="#" class="btn btn-outline" style="border-color:white; color:white;">More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Connect / contact -->
+<section id="connect" class="section">
+    <div class="container">
+        <h2 class="section-title">stay connected</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+            <div style="flex: 1; min-width: 260px;">
+                <p style="font-size: 1.3rem; margin-bottom: 24px;">Subscribe to our weekly newsletter for updates, sermons, and inspiration.</p>
+                <form style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <input type="email" placeholder="Your email" style="flex: 1; min-width: 200px; padding: 16px 20px; border-radius: 60px; border: 1px solid #ddd; font-size: 1rem;">
+                    <button class="btn btn-primary" style="border-radius: 60px;">Subscribe</button>
+                </form>
+                <div style="margin-top: 40px;">
+                    <i class="fas fa-map-pin" style="color:#b8863b; margin-right: 12px;"></i> 2100 Faith Ave, City, ST 12345<br>
+                    <i class="fas fa-phone-alt" style="color:#b8863b; margin-right: 12px;"></i> (555) 123-4567<br>
+                    <i class="fas fa-envelope" style="color:#b8863b; margin-right: 12px;"></i> hello@newcovenant.church
+                </div>
+            </div>
+            <div style="flex:1; background: #e9e2d8; border-radius: 40px; padding: 32px; text-align: center; min-height: 240px; display: flex; flex-direction: column; justify-content: center;">
+                <i class="fas fa-map-marked-alt" style="font-size: 3rem; color:#b8863b; margin-bottom: 16px;"></i>
+                <h3>find us</h3>
+                <p>Directions & parking info</p>
+                <a href="#" class="btn btn-outline" style="margin-top: 16px; align-self: center;">Get directions</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h4 style="color:white;">New Covenant</h4>
+                <p>© 2026 New Covenant Church.<br>All rights reserved.</p>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <p><i class="fab fa-youtube"></i> YouTube<br>
+                <i class="fab fa-instagram"></i> Instagram<br>
+                <i class="fab fa-facebook"></i> Facebook</p>
+            </div>
+            <div>
+                <h4>Giving</h4>
+                <p><a href="#giving">Online</a><br>
+                <a href="#giving">Bank transfer</a><br>
+                <a href="#giving">Stock donation</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Built with ✝️ for a modern church — demo for TBA News Network</p>
+        </div>
+    </div>
+</footer>
+
+<!-- mobile menu & smooth scroll -->
+<script>
+    (function() {
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+
+        // smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // nav background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 6px 18px rgba(0,0,0,0.08)';
+            } else {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.04)';
+            }
+        });
+
+        // simple demo: giving alert
+        const giveBtn = document.querySelector('.btn-giving');
+        if (giveBtn) {
+            giveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('⚡ Thank you for your generosity! (Demo — this would link to a real giving platform)');
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
